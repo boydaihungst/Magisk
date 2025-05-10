@@ -339,7 +339,7 @@ static void load_modules(bool zygisk_enabled, const rust::Vec<ModuleInfo> &modul
 
     if (!system->is_empty()) {
         // Handle special read-only partitions
-        for (const char *part : { "/vendor", "/product", "/system_ext" }) {
+        for (const char *part : { "/vendor", "/product", "/system_ext", "/odm" }) {
             struct stat st{};
             if (lstat(part, &st) == 0 && S_ISDIR(st.st_mode)) {
                 if (auto old = system->extract(part + 1)) {
